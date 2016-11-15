@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsuageDescription</key>
+	<string>Allow &quot;National Park Finder&quot; to access your location while you use the app?</string>
+	<key>NSLocationAlwaysUsuageDescription</key>
+	<string>Allow &quot;National Park Finder&quot; to access your location even when you are not using the app?</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
