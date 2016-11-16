@@ -20,6 +20,7 @@
 		F6481D991DD5781500018638 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6481D981DD5781500018638 /* data.plist */; };
 		F6481D9B1DD5794D00018638 /* VCMapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481D9A1DD5794D00018638 /* VCMapDelegate.swift */; };
 		F6481DA21DD5865300018638 /* VCLocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481DA11DD5865300018638 /* VCLocationDelegate.swift */; };
+		F6481DA41DDD0F4B00018638 /* right-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = F6481DA31DDD0F4B00018638 /* right-arrow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		F6481D981DD5781500018638 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		F6481D9A1DD5794D00018638 /* VCMapDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCMapDelegate.swift; sourceTree = "<group>"; };
 		F6481DA11DD5865300018638 /* VCLocationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCLocationDelegate.swift; sourceTree = "<group>"; };
+		F6481DA31DDD0F4B00018638 /* right-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right-arrow.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,9 +75,10 @@
 		F6481D721DD565EF00018638 /* npf-3.0 */ = {
 			isa = PBXGroup;
 			children = (
-				F6481D9C1DD57CB200018638 /* ViewControllers */,
+				F6481DA51DDD0F7100018638 /* Assets */,
 				F6481D971DD5780200018638 /* Data */,
 				F6481D8E1DD5697500018638 /* Models */,
+				F6481D9C1DD57CB200018638 /* ViewControllers */,
 				F6481D731DD565EF00018638 /* AppDelegate.swift */,
 				F6481D771DD565EF00018638 /* Main.storyboard */,
 				F6481D7A1DD565EF00018638 /* Assets.xcassets */,
@@ -120,6 +123,14 @@
 				F6481DA11DD5865300018638 /* VCLocationDelegate.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F6481DA51DDD0F7100018638 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F6481DA31DDD0F4B00018638 /* right-arrow.png */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +192,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6481DA41DDD0F4B00018638 /* right-arrow.png in Resources */,
 				F6481D7E1DD565EF00018638 /* LaunchScreen.storyboard in Resources */,
 				F6481D7B1DD565EF00018638 /* Assets.xcassets in Resources */,
 				F6481D991DD5781500018638 /* data.plist in Resources */,
@@ -361,6 +373,7 @@
 				F6481D841DD565EF00018638 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

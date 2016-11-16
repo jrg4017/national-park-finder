@@ -18,23 +18,17 @@ class ViewController: UIViewController {
     
     var parks: [Park] = []
     var locationManager: CLLocationManager = CLLocationManager()
+    var currentLocation:CLLocationCoordinate2D = CLLocationCoordinate2D()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadLocation()
-        //loadData()
+        loadData()
         mapView.delegate = self
-        
-        if let coor = mapView.userLocation.location?.coordinate{
-            mapView.setCenter(coor, animated: true)
-        }
+        mapView.showsUserLocation = true
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        mapView.showsUserLocation = true;
-    }
+
     
     //updates the view when different control is selected
     @IBAction func updateMapViewType(_ sender: UISegmentedControl) {
@@ -49,17 +43,21 @@ class ViewController: UIViewController {
                 mapView.mapType = .standard
         }
     }
+    
     //zooms out to intial view when clicked
     @IBAction func refreshViewZoomedOut(_ sender: UIBarButtonItem) {
         
     }
     func loadLocation() {
+        // Ask for Authorisation from the User.
         locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
         locationManager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
     }
