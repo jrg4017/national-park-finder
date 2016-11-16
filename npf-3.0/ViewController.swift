@@ -13,17 +13,55 @@ import CoreLocation
 class ViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapTypeSegmentCtrl: UISegmentedControl!
+    @IBOutlet weak var refreshView: UIBarButtonItem!
+    
     var parks: [Park] = []
-    var locationManager: CLLocationManager!
+    var locationManager: CLLocationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadData()
-        mapView.delegate = self
-        mapView.showsUserLocation = true
-        
         loadLocation()
+        //loadData()
+        mapView.delegate = self
+        
+        if let coor = mapView.userLocation.location?.coordinate{
+            mapView.setCenter(coor, animated: true)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        mapView.showsUserLocation = true;
+    }
+    
+    //updates the view when different control is selected
+    @IBAction func updateMapViewType(_ sender: UISegmentedControl) {
+        switch(sender.selectedSegmentIndex) {
+            case 0:
+                mapView.mapType = .standard
+            case 1:
+                mapView.mapType = .satellite
+            case 2:
+                mapView.mapType = .hybrid
+            default:
+                mapView.mapType = .standard
+        }
+    }
+    //zooms out to intial view when clicked
+    @IBAction func refreshViewZoomedOut(_ sender: UIBarButtonItem) {
+        
+    }
+    func loadLocation() {
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
     }
     
     func loadData() {

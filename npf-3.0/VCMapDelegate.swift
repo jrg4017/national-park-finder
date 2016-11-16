@@ -22,51 +22,29 @@ extension ViewController: MKMapViewDelegate {
         print("The title of the annotation is: \(annotation!.title)")
     }
     
-//    //user location
-//    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-//        // Create a point object
-//        let point = MKPointAnnotation()
-//        // Assign it a location
-//        point.coordinate = userLocation.coordinate
-//        
-//        // add it to map
-//        mapView.addAnnotation(point)
-//        let mkCoordinateRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 20000, 20000)
-//        mapView.setRegion(mkCoordinateRegion, animated: true)
-//    }
-
-    
     //called for each annotation to create a pin
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         var view:MKPinAnnotationView
         let identifier = "Pin"
-        
-        if annotation is MKUserLocation {
-            return nil
-        } // end of annotation is
-        
-        if annotation !== mapView.userLocation {
-            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
+    
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
                 dequeuedView.annotation = annotation
                 view = dequeuedView
-            } else {
-                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.pinTintColor = MKPinAnnotationView.greenPinColor()
-                view.animatesDrop = true
-                view.canShowCallout = true
-                view.calloutOffset = CGPoint(x: -5, y: -5)
-                let leftButton = UIButton(type: .infoLight)
-                let rightButton = UIButton(type: .detailDisclosure)
-                leftButton.tag = 0
-                rightButton.tag = 1
-                view.leftCalloutAccessoryView = leftButton
-                view.rightCalloutAccessoryView = rightButton
-            }
-            
-            return view
+        } else {
+            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.pinTintColor = MKPinAnnotationView.greenPinColor()
+            view.animatesDrop = true
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: -5)
+            let leftButton = UIButton(type: .infoLight)
+            let rightButton = UIButton(type: .detailDisclosure)
+            leftButton.tag = 0
+            rightButton.tag = 1
+            view.leftCalloutAccessoryView = leftButton
+            view.rightCalloutAccessoryView = rightButton
         }
-        
-        return nil
+            
+        return view
     }
 }
