@@ -28,7 +28,6 @@ class ViewController: UIViewController {
         mapView.delegate = self
         mapView.showsUserLocation = true
     }
-
     
     //updates the view when different control is selected
     @IBAction func updateMapViewType(_ sender: UISegmentedControl) {
@@ -44,10 +43,23 @@ class ViewController: UIViewController {
         }
     }
     
-    //zooms out to intial view when clicked
+    //zooms out to intial viewcenter of us when clicked
     @IBAction func refreshViewZoomedOut(_ sender: UIBarButtonItem) {
+        let lattitude = mapView.centerCoordinate.latitude
+        let longitude = mapView.centerCoordinate.longitude
         
+        zoomRegion(lattitude, longitude, 50.0)
     }
+    
+    //function to zoom in or out on a location
+    func zoomRegion(_ lattitude: CLLocationDegrees, _ longitude: CLLocationDegrees, _ delta: Double) {
+        let center = CLLocationCoordinate2D(latitude: lattitude, longitude: longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta))
+        
+        mapView.setRegion(region, animated: true)
+    }
+    
+    //asks for location and sets up the need for location to update
     func loadLocation() {
         // Ask for Authorisation from the User.
         locationManager.requestAlwaysAuthorization()
@@ -62,6 +74,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //loads the data in from data.plist and add as mkAnnotations
     func loadData() {
         if let path = Bundle.main.path(forResource: "data", ofType: "plist") {
             if let tempDict = NSDictionary(contentsOfFile: path){

@@ -12,6 +12,7 @@ import MapKit
 
 extension ViewController: CLLocationManagerDelegate {
     
+    //updates current location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = manager.location!.coordinate
     }

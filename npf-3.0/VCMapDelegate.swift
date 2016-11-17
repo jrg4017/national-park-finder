@@ -12,18 +12,16 @@ import AddressBook
 
 extension ViewController: MKMapViewDelegate {
     
-    //button
+    //button right and left clicks
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if (control == view.rightCalloutAccessoryView) {
             getDirections(view)
         } else if (control == view.leftCalloutAccessoryView) {
-            print("Control tapped: \(control), view title: \(view.annotation?.title), tag numbers: ")
-        } else {
             goToWebsite(view)
         }
-        
     }
     
+    //gets directions by going maps navigation
     func getDirections(_ view: MKAnnotationView) {
         let destination = view.annotation
         
@@ -41,30 +39,28 @@ extension ViewController: MKMapViewDelegate {
         MKMapItem.openMaps(with: mapItems, launchOptions:launchOptions)
     }
     
+    //goes to the park's website
     func goToWebsite(_ view: MKAnnotationView) {
         let annotation = view.annotation
         
         for park in parks {
             if park.title == annotation?.title! {
                 let parkURL = NSURL(string: park.getLink())! as URL
-                UIApplication.shared.openURL(parkURL)
+                UIApplication.shared.open(parkURL, options: [:], completionHandler: nil)
             }
         }
     }
     
-    //get driving or go to url
-//    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-//        let annotation = view.annotation
-//        
-//        if view {
-//        for park in parks {
-//            if park.title == annotation?.title! {
-//                let parkURL = NSURL(string: park.getLink())! as URL
-//                UIApplication.shared.openURL(parkURL)
-//            }
-//        }
-//        }
-//    }
+    //zoom on selected annotation
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let annotation = view.annotation
+        
+        let lattitude = annotation?.coordinate.latitude
+        let longitude = annotation?.coordinate.longitude
+        
+        zoomRegion(lattitude!, longitude!, 0.75)
+        
+    }
     
     //called for each annotation to create a pin
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

@@ -16,7 +16,6 @@
 		F6481D891DD566FA00018638 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6481D881DD566FA00018638 /* CoreLocation.framework */; };
 		F6481D901DD5698600018638 /* Parks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481D8F1DD5698600018638 /* Parks.swift */; };
 		F6481D941DD569F100018638 /* Park.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481D931DD569F100018638 /* Park.swift */; };
-		F6481D961DD5747E00018638 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481D951DD5747E00018638 /* Artwork.swift */; };
 		F6481D991DD5781500018638 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6481D981DD5781500018638 /* data.plist */; };
 		F6481D9B1DD5794D00018638 /* VCMapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481D9A1DD5794D00018638 /* VCMapDelegate.swift */; };
 		F6481DA21DD5865300018638 /* VCLocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481DA11DD5865300018638 /* VCLocationDelegate.swift */; };
@@ -35,7 +34,6 @@
 		F6481D881DD566FA00018638 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F6481D8F1DD5698600018638 /* Parks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parks.swift; sourceTree = "<group>"; };
 		F6481D931DD569F100018638 /* Park.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Park.swift; sourceTree = "<group>"; };
-		F6481D951DD5747E00018638 /* Artwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		F6481D981DD5781500018638 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		F6481D9A1DD5794D00018638 /* VCMapDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCMapDelegate.swift; sourceTree = "<group>"; };
 		F6481DA11DD5865300018638 /* VCLocationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCLocationDelegate.swift; sourceTree = "<group>"; };
@@ -83,7 +81,6 @@
 				F6481D771DD565EF00018638 /* Main.storyboard */,
 				F6481D7A1DD565EF00018638 /* Assets.xcassets */,
 				F6481D7C1DD565EF00018638 /* LaunchScreen.storyboard */,
-				F6481D951DD5747E00018638 /* Artwork.swift */,
 			);
 			path = "npf-3.0";
 			sourceTree = "<group>";
@@ -212,7 +209,6 @@
 				F6481D9B1DD5794D00018638 /* VCMapDelegate.swift in Sources */,
 				F6481DA21DD5865300018638 /* VCLocationDelegate.swift in Sources */,
 				F6481D761DD565EF00018638 /* ViewController.swift in Sources */,
-				F6481D961DD5747E00018638 /* Artwork.swift in Sources */,
 				F6481D741DD565EF00018638 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
