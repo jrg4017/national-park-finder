@@ -8,22 +8,42 @@
 
 /* Begin PBXBuildFile section */
 		F6481DB31DDD342100018638 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481DB21DDD342100018638 /* AppDelegate.swift */; };
-		F6481DB51DDD342100018638 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481DB41DDD342100018638 /* FirstViewController.swift */; };
 		F6481DB71DDD342100018638 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481DB61DDD342100018638 /* SecondViewController.swift */; };
 		F6481DBA1DDD342100018638 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6481DB81DDD342100018638 /* Main.storyboard */; };
 		F6481DBC1DDD342100018638 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6481DBB1DDD342100018638 /* Assets.xcassets */; };
 		F6481DBF1DDD342100018638 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6481DBD1DDD342100018638 /* LaunchScreen.storyboard */; };
+		F6481DC81DDD349A00018638 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481DC71DDD349A00018638 /* MapViewController.swift */; };
+		F6481DCA1DDD34E000018638 /* ParkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481DC91DDD34E000018638 /* ParkTableViewController.swift */; };
+		F6481DCD1DDD352200018638 /* ParkDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481DCC1DDD352200018638 /* ParkDetailTableViewController.swift */; };
+		F6481DCF1DDD357300018638 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481DCE1DDD357300018638 /* FavoritesViewController.swift */; };
+		F6481DD41DDD35F700018638 /* MkMapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481DD31DDD35F700018638 /* MkMapViewDelegate.swift */; };
+		F6481DD61DDD367600018638 /* CLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481DD51DDD367600018638 /* CLLocationManagerDelegate.swift */; };
+		F6481DD81DDD36A100018638 /* Park.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481DD71DDD36A100018638 /* Park.swift */; };
+		F6481DDB1DDD36CE00018638 /* Parks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481DDA1DDD36CE00018638 /* Parks.swift */; };
+		F6481DDE1DDD36E800018638 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6481DDD1DDD36E800018638 /* CoreLocation.framework */; };
+		F6481DE01DDD36F800018638 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6481DDF1DDD36F800018638 /* MapKit.framework */; };
+		F6481DEA1DDD617D00018638 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6481DE91DDD617D00018638 /* data.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F6481DAF1DDD342100018638 /* national-park-finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "national-park-finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6481DB21DDD342100018638 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F6481DB41DDD342100018638 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		F6481DB61DDD342100018638 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		F6481DB91DDD342100018638 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F6481DBB1DDD342100018638 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F6481DBE1DDD342100018638 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F6481DC01DDD342100018638 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6481DC71DDD349A00018638 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		F6481DC91DDD34E000018638 /* ParkTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkTableViewController.swift; sourceTree = "<group>"; };
+		F6481DCC1DDD352200018638 /* ParkDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkDetailTableViewController.swift; sourceTree = "<group>"; };
+		F6481DCE1DDD357300018638 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		F6481DD31DDD35F700018638 /* MkMapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MkMapViewDelegate.swift; sourceTree = "<group>"; };
+		F6481DD51DDD367600018638 /* CLLocationManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationManagerDelegate.swift; sourceTree = "<group>"; };
+		F6481DD71DDD36A100018638 /* Park.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Park.swift; sourceTree = "<group>"; };
+		F6481DDA1DDD36CE00018638 /* Parks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parks.swift; sourceTree = "<group>"; };
+		F6481DDD1DDD36E800018638 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F6481DDF1DDD36F800018638 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		F6481DE91DDD617D00018638 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6481DE01DDD36F800018638 /* MapKit.framework in Frameworks */,
+				F6481DDE1DDD36E800018638 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +64,7 @@
 			children = (
 				F6481DB11DDD342100018638 /* national-park-finder */,
 				F6481DB01DDD342100018638 /* Products */,
+				F6481DDC1DDD36E800018638 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,14 +80,87 @@
 			isa = PBXGroup;
 			children = (
 				F6481DB21DDD342100018638 /* AppDelegate.swift */,
-				F6481DB41DDD342100018638 /* FirstViewController.swift */,
-				F6481DB61DDD342100018638 /* SecondViewController.swift */,
-				F6481DB81DDD342100018638 /* Main.storyboard */,
-				F6481DBB1DDD342100018638 /* Assets.xcassets */,
-				F6481DBD1DDD342100018638 /* LaunchScreen.storyboard */,
-				F6481DC01DDD342100018638 /* Info.plist */,
+				F6481DE11DDD3E6400018638 /* Assets */,
+				F6481DE81DDD616B00018638 /* Data */,
+				F6481DD91DDD36A600018638 /* Model */,
+				F6481DEC1DDD6E4E00018638 /* Storyboard */,
+				F6481DC61DDD344200018638 /* View Controllers */,
 			);
 			path = "national-park-finder";
+			sourceTree = "<group>";
+		};
+		F6481DC61DDD344200018638 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F6481DD21DDD35BD00018638 /* MapView */,
+				F6481DB61DDD342100018638 /* SecondViewController.swift */,
+				F6481DEB1DDD6D9C00018638 /* Park Table */,
+				F6481DCE1DDD357300018638 /* FavoritesViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		F6481DD21DDD35BD00018638 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				F6481DC71DDD349A00018638 /* MapViewController.swift */,
+				F6481DD31DDD35F700018638 /* MkMapViewDelegate.swift */,
+				F6481DD51DDD367600018638 /* CLLocationManagerDelegate.swift */,
+			);
+			name = MapView;
+			sourceTree = "<group>";
+		};
+		F6481DD91DDD36A600018638 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F6481DD71DDD36A100018638 /* Park.swift */,
+				F6481DDA1DDD36CE00018638 /* Parks.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		F6481DDC1DDD36E800018638 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F6481DDF1DDD36F800018638 /* MapKit.framework */,
+				F6481DDD1DDD36E800018638 /* CoreLocation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F6481DE11DDD3E6400018638 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F6481DBB1DDD342100018638 /* Assets.xcassets */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		F6481DE81DDD616B00018638 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F6481DE91DDD617D00018638 /* data.plist */,
+				F6481DC01DDD342100018638 /* Info.plist */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		F6481DEB1DDD6D9C00018638 /* Park Table */ = {
+			isa = PBXGroup;
+			children = (
+				F6481DC91DDD34E000018638 /* ParkTableViewController.swift */,
+				F6481DCC1DDD352200018638 /* ParkDetailTableViewController.swift */,
+			);
+			name = "Park Table";
+			sourceTree = "<group>";
+		};
+		F6481DEC1DDD6E4E00018638 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				F6481DB81DDD342100018638 /* Main.storyboard */,
+				F6481DBD1DDD342100018638 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +224,7 @@
 			files = (
 				F6481DBF1DDD342100018638 /* LaunchScreen.storyboard in Resources */,
 				F6481DBC1DDD342100018638 /* Assets.xcassets in Resources */,
+				F6481DEA1DDD617D00018638 /* data.plist in Resources */,
 				F6481DBA1DDD342100018638 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,9 +236,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6481DD61DDD367600018638 /* CLLocationManagerDelegate.swift in Sources */,
+				F6481DCD1DDD352200018638 /* ParkDetailTableViewController.swift in Sources */,
 				F6481DB71DDD342100018638 /* SecondViewController.swift in Sources */,
+				F6481DCF1DDD357300018638 /* FavoritesViewController.swift in Sources */,
 				F6481DB31DDD342100018638 /* AppDelegate.swift in Sources */,
-				F6481DB51DDD342100018638 /* FirstViewController.swift in Sources */,
+				F6481DD41DDD35F700018638 /* MkMapViewDelegate.swift in Sources */,
+				F6481DD81DDD36A100018638 /* Park.swift in Sources */,
+				F6481DCA1DDD34E000018638 /* ParkTableViewController.swift in Sources */,
+				F6481DC81DDD349A00018638 /* MapViewController.swift in Sources */,
+				F6481DDB1DDD36CE00018638 /* Parks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

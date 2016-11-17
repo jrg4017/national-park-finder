@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>National Park Finder app</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Allow &quot;National Park Finder&quot; to detect your location</string>
+	<key>NSLocationWhenInUseUsuageDescription</key>
+	<string>Allow &quot;National Park Finder&quot; to access your location while you use the app?</string>
+	<key>NSLocationAlwaysUsuageDescription</key>
+	<string>Allow &quot;National Park Finder&quot; to access your location even when you are not using the app?</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -15,9 +23,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>4.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>4</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
