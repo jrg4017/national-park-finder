@@ -12,7 +12,11 @@ import CoreLocation
 
 class MapViewController: UIViewController {
     
+    @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
+    
+    var mapTypePickerView: UIPickerView!
+    let pickerDataSource = ["Standard", "Satellite", "Hybrid"]
     
 //    @IBOutlet weak var mapTypeSegmentCtrl: UISegmentedControl!
     var parkList = Parks()
@@ -27,6 +31,7 @@ class MapViewController: UIViewController {
     var locationManager: CLLocationManager = CLLocationManager()
     var currentLocation:CLLocationCoordinate2D = CLLocationCoordinate2D()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,22 +39,15 @@ class MapViewController: UIViewController {
         loadAnnotations()
         mapView.delegate = self
         mapView.showsUserLocation = true
+        
+        //let inputView = UIView(frame: CGRect(0, 0, self.view.frame.width, 240))
+        mapTypePickerView = UIPickerView()
+        mapTypePickerView.dataSource = self
+        mapTypePickerView.delegate = self
+        
+        settingsButton.inputView = mapTypePickerView
     }
     
-//    //updates the view when different control is selected
-//    @IBAction func updateMapViewType(_ sender: UISegmentedControl) {
-//        switch(sender.selectedSegmentIndex) {
-//        case 0:
-//            mapView.mapType = .standard
-//        case 1:
-//            mapView.mapType = .satellite
-//        case 2:
-//            mapView.mapType = .hybrid
-//        default:
-//            mapView.mapType = .standard
-//        }
-//    }
-//    
     //zooms out to intial viewcenter of us when clicked
     @IBAction func zoomViewOut(_ sender: UIButton) {
         let lattitude = mapView.centerCoordinate.latitude

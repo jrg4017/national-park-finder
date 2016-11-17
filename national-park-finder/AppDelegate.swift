@@ -26,7 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mapViewController = tabBarController!.viewControllers![0] as! MapViewController
         let navigationViewController = tabBarController!.viewControllers![1] as! UINavigationController
         let parkTableViewController = navigationViewController.viewControllers[0] as! ParkTableViewController
-
+        //let nav2ViewController = tabBarController!.viewControllers![2] as! UINavigationController
+        //let favoritesViewController = nav2ViewController.viewControllers[0] as! FavoritesViewController
+        //let aboutViewController = tabBarController!.viewControllers![3] as! AboutViewController
+        
         
         let parkList = Parks()
         parkList.parkList = parks
@@ -34,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //set parks list
         mapViewController.parkList = parkList
         parkTableViewController.parkList = parkList
+        //favoritesViewController.parkList = parkList
         
         return true
     }

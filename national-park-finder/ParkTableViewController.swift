@@ -8,18 +8,8 @@
 
 import UIKit
 
-class ParkTableViewController: UITableViewController {
-    var parkList = Parks()
-    var parks: [Park] {
-        get {
-            return self.parkList.parkList
-        }
-        set(val) {
-            self.parkList.parkList = val
-        }
-    }
-    
-    
+class ParkTableViewController: TableViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,29 +22,21 @@ class ParkTableViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Table view data source
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return parks.count
     }
     
-    // Uncomment and change identifier to 'landmark cell'
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ParkCell", for: indexPath)
         
         // Configure the cell...
         let park = parks[indexPath.row]
         cell.textLabel?.text = park.getParkName()
-        cell.detailTextLabel?.text = park.getParkLocation()
+        cell.detailTextLabel?.text = "Distance: "
         // Gives you greater than sign, last time you created a segue, this why is programmatically
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -69,7 +51,6 @@ class ParkTableViewController: UITableViewController {
         detailVC.park = park
         navigationController?.pushViewController(detailVC, animated: true)
     }
-    
 }
 
 

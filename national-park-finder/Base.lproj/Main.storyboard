@@ -20,12 +20,17 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SoB-9l-hYO"/>
                             <button alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9z-Gq-weY">
-                                <frame key="frameInset" minX="321" minY="28" width="38" height="38"/>
+                                <frame key="frameInset" minX="283" minY="28" width="38" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="compass"/>
                                 <connections>
                                     <action selector="zoomViewOut:" destination="9pv-A4-QxB" eventType="touchUpInside" id="42R-nH-Hty"/>
                                 </connections>
+                            </button>
+                            <button alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LCe-Q4-AKj">
+                                <frame key="frameInset" minX="326" minY="28" width="38" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="map-settings"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -39,11 +44,12 @@
                     <tabBarItem key="tabBarItem" title="Map" image="map" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="mapView" destination="SoB-9l-hYO" id="FbF-IV-sh7"/>
+                        <outlet property="settingsButton" destination="LCe-Q4-AKj" id="wcf-OZ-59x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
+            <point key="canvasLocation" x="878" y="-668"/>
         </scene>
         <!--Park Table-->
         <scene sceneID="3hq-LK-T3S">
@@ -58,8 +64,14 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M9d-6F-CVX" id="jte-UJ-ize">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aRv-0h-No8">
+                                            <frame key="frameInset" minX="8" minY="-9" height="44" maxX="-8"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        </navigationBar>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -68,17 +80,74 @@
                             <outlet property="delegate" destination="b9Z-T9-Ugk" id="Hmp-OK-9hp"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Parks" id="RV7-ac-uE7"/>
+                    <navigationItem key="navigationItem" id="Kre-ej-EEZ">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="QHf-3K-34Q">
+                            <rect key="frame" x="80" y="7" width="216" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="A-Z"/>
+                                <segment title="Z-A"/>
+                                <segment title="Distance"/>
+                            </segments>
+                        </segmentedControl>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lzu-3D-QUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2013.5999999999999" y="447.52623688155927"/>
+            <point key="canvasLocation" x="1772" y="0.0"/>
         </scene>
-        <!--Item-->
+        <!--Root View Controller-->
+        <scene sceneID="XqO-NU-Ab1">
+            <objects>
+                <tableViewController id="ek0-wF-08l" customClass="Fa" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Hf5-qB-gXA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1ch-YQ-wsb">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1ch-YQ-wsb" id="u12-Hg-PVk">
+                                    <frame key="frameInset" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ek0-wF-08l" id="HQC-QX-xdf"/>
+                            <outlet property="delegate" destination="ek0-wF-08l" id="bHR-RB-21V"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="GL0-tS-dAp"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vO3-M9-q85" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1762" y="761"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="558-dk-Y8G">
+            <objects>
+                <navigationController id="xuR-Xz-UnI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="Qno-vl-iFT"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cqn-MM-Wfo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ek0-wF-08l" kind="relationship" relationship="rootViewController" id="GEM-g7-L4S"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SWd-dI-Zeo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="878" y="762"/>
+        </scene>
+        <!--Park-->
         <scene sceneID="aET-40-LdX">
             <objects>
                 <navigationController id="80m-fa-3lp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Olh-eM-oUD"/>
+                    <tabBarItem key="tabBarItem" title="Park" id="Olh-eM-oUD"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vuv-B6-dBE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -89,7 +158,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wVl-ZQ-m3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="448"/>
+            <point key="canvasLocation" x="878" y="0.0"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="qQs-ES-3tw">
+            <objects>
+                <viewController id="4zp-CG-zZs" customClass="AboutViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ITw-mG-ArO"/>
+                        <viewControllerLayoutGuide type="bottom" id="qc2-Pu-QOh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="a0b-g8-6aV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="About" id="cu8-Yb-raw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nSz-60-AQ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1" y="762"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -104,6 +192,8 @@
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="80m-fa-3lp" kind="relationship" relationship="viewControllers" id="nFR-qT-PAQ"/>
+                        <segue destination="xuR-Xz-UnI" kind="relationship" relationship="viewControllers" id="Fxb-J3-tSL"/>
+                        <segue destination="4zp-CG-zZs" kind="relationship" relationship="viewControllers" id="4m6-kh-nla"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -114,5 +204,6 @@
     <resources>
         <image name="compass" width="38" height="38"/>
         <image name="map" width="38" height="38"/>
+        <image name="map-settings" width="38" height="38"/>
     </resources>
 </document>
