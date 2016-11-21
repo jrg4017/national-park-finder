@@ -9,60 +9,54 @@
 import UIKit
 
 class ParkDetailTableViewController: UITableViewController {
-    
+/**************** constant values **************************/
+    let NUM_OF_SECTIONS: Int = 6
+    let NUM_OF_ROWS: Int = 1
+    let NUM_OF_SECTION_0_ROWS: Int = 4
+    let STANDARD_ROW_HEIGHT: CGFloat = 44.0
+    let MAP_CELL_TITLE: String = "Show on Map"
+    let FAVORITES_CELL_TITLE: String = "Add to Favorites"
+/**************** variables ********************************/
     var park: Park!
-    let heightForEachSection: [Double] = [44.0, 88.0, 88.0, 44.0, 44.0, 44.0]
     
+/**************** override funcs **************************/
     
+    //when view loads, implement variable section heights
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        //allows the section to have variable heights, to adapt to content
+        super.tableView.rowHeight = UITableViewAutomaticDimension
         
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        //inserts intial section height of 44
+        super.tableView.estimatedRowHeight = STANDARD_ROW_HEIGHT
+        
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK: - Table view data source
-    
+    //we have exactly 6 sections of information
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return NUM_OF_SECTIONS
     }
     
+    //returns the number of rows in a section
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //first section has different row #s
         if section == 0 {
-            return 4
+            return NUM_OF_SECTION_0_ROWS
         }
         
-        return 1
+        return NUM_OF_ROWS
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-//        if indexPath.section == 2{
-//            return 88.0
-//        }
-//        // standard height
-//        return 44.0
-        return CGFloat(heightForEachSection[indexPath.section])
-    }
-    
+    //when tapping on specific sections, implement appropiate action
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var msg = ""
         switch indexPath.section {
-            case 0:
-                msg = "You tapped Park Name"
-            case 0:
-                msg = "You tapped Park State"
-            case 0:
-                msg = "You tapped Park Coordinates"
+            case 3:
+                goToURL(park)
+            case 4:
+                msg = "Show on Map"
+            case 5:
+                msg = "Add to favorites?"
             default:
                 break
         }
@@ -81,6 +75,7 @@ class ParkDetailTableViewController: UITableViewController {
         
     }
     
+    //sets the content for each section
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier")
         
@@ -90,53 +85,73 @@ class ParkDetailTableViewController: UITableViewController {
         
         switch indexPath.section {
             case 0:
-                cell!.textLabel?.text = "\(park.getParkName()) \n \(park.getParkLocation()) \n \(park.getArea()) \n \(park.getDateFormed())"
+                setSection0Content(cell!, indexPath, park)
             case 1:
-                insertImageViewCell(cell!, park)
+                if let checkedUrl = URL(string: park.getLink()) {
+                    cell!.imageView?.contentMode = .scaleAspectFit
+                    setCellImageView(url: checkedUrl, cell: cell!)
+                }
             case 2:
-                cell!.textLabel?.text = "Latitude: \(park.coordinate.latitude) \nLongitude: \(park.coordinate.longitude)"
+                cell!.textLabel?.text = "\(park.getParkDescription())"
+            case 3:
+                cell!.textLabel?.text = "\(park.getLink())"
+            case 4:
+                cell!.textLabel?.text = MAP_CELL_TITLE
+            case 5:
+                cell!.textLabel?.text = FAVORITES_CELL_TITLE
             default:
                 break
         }
+        
+        if indexPath.section == 3 || indexPath.section == 4 || indexPath.section == 5 {
+            cell!.textLabel?.textAlignment = .center
+        }
+        
         cell?.textLabel?.numberOfLines = 0 // use as many lines as it needs
         
         return cell!
     }
+
+/**************** helper functions **************************/
     
-    func insertImageViewCell(_ cell: UITableViewCell, _ park: Park){
-        var imageCache = [String : UIImage]()
-        let imageView = UIImageView()
-        let url = park.getImageLink()
-        
-        if let img = imageCache[url] {
-            imageView.image = img
-        } else {
-            let request: NSURLRequest = NSURLRequest(url: NSURL(string: url)! as URL)
-            let mainQueue = OperationQueue.main
-            
-            NSURLConnection.sendAsynchronousRequest(request as URLRequest, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
-                if error == nil {
-                    let image = UIImage(data: data!)
-                    imageCache[url] = image
-                    
-                    DispatchQueue.main.async (execute: {
-                        imageView.image = image
-                    })
-                }
-            })
+    //sets the appropiate content for each row within the first section
+    func setSection0Content(_ cell: UITableViewCell, _ indexPath: IndexPath, _ park: Park) {
+        switch indexPath.row {
+            case 0:
+                cell.textLabel?.text = "\(park.getParkName())"
+            case 1:
+                cell.textLabel?.text = "\(park.getParkLocation())"
+            case 2:
+                cell.textLabel?.text = "\(park.getArea())"
+            case 3:
+                cell.textLabel?.text = "Date Formed: \(park.getDateFormed())"
+            default:
+                break
         }
         
-        cell.imageView?.image = imageView.image
-    
-//        let url = NSURL(string: park.getImageLink()) as! URL
-//        let data = NSData(contentsOf: url) as! Data
-//        
-//        cell.imageView!.image = UIImage(data: data)
-
+        cell.textLabel?.textAlignment = .center
     }
     
-    func getSectionRowInfo(_ indexPath: IndexPath, _ cell: UITableViewCell) {
+    func setCellImageView(url: URL, cell: UITableViewCell) {
+        getImageDataFromURL(url: url) { (data, response, error)  in
+            guard let data = data, error == nil else { return }
+            
+            DispatchQueue.main.async() { () -> Void in
+                cell.imageView?.image = UIImage(data: data)
+            }
+        }
         
     }
-
+    
+    func getImageDataFromURL(url: URL, completion: @escaping(_ data: Data?, _ response: URLResponse, _ error: Error?) -> Void) {
+        URLSession.shared.dataTask(with: url) {
+            (data, response, error) in completion(data, response!, error)
+        }.resume()
+    }
+    
+    //goes to URL if row is clicked
+    func goToURL(_ park: Park) {
+        let parkURL = NSURL(string: park.getLink())! as URL
+        UIApplication.shared.open(parkURL, options: [:], completionHandler: nil)
+    }
 }

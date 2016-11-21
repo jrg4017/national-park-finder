@@ -10,44 +10,19 @@ import UIKit
 import MapKit
 import AddressBook
 
+/**
+  * extension handles the needs for MKMapViewDelegate
+  * see MapViewController
+  */
 extension MapViewController: MKMapViewDelegate {
     
+/**************** Delegate functions **************************/
     //button right and left clicks
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if (control == view.rightCalloutAccessoryView) {
             getDirections(view)
         } else if (control == view.leftCalloutAccessoryView) {
             goToWebsite(view)
-        }
-    }
-    
-    //gets directions by going maps navigation
-    func getDirections(_ view: MKAnnotationView) {
-        let destination = view.annotation
-        
-        let currentLocMapItem = MKMapItem.forCurrentLocation()
-        
-        let destinationPlacemark = MKPlacemark(coordinate: (destination?.coordinate)!, addressDictionary: nil)
-        
-        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
-        destinationMapItem.name = destination?.title!
-        
-        let mapItems = [currentLocMapItem, destinationMapItem]
-        
-        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        
-        MKMapItem.openMaps(with: mapItems, launchOptions:launchOptions)
-    }
-    
-    //goes to the park's website
-    func goToWebsite(_ view: MKAnnotationView) {
-        let annotation = view.annotation
-        
-        for park in parks {
-            if park.title == annotation?.title! {
-                let parkURL = NSURL(string: park.getLink())! as URL
-                UIApplication.shared.open(parkURL, options: [:], completionHandler: nil)
-            }
         }
     }
     
@@ -98,4 +73,36 @@ extension MapViewController: MKMapViewDelegate {
         }
         return nil
     }
+    
+/**************** helper functions **************************/
+    
+    //gets directions by going maps navigation
+    func getDirections(_ view: MKAnnotationView) {
+        let destination = view.annotation
+        
+        let currentLocMapItem = MKMapItem.forCurrentLocation()
+        
+        let destinationPlacemark = MKPlacemark(coordinate: (destination?.coordinate)!, addressDictionary: nil)
+        
+        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+        destinationMapItem.name = destination?.title!
+        
+        let mapItems = [currentLocMapItem, destinationMapItem]
+        
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        
+        MKMapItem.openMaps(with: mapItems, launchOptions:launchOptions)
+    }
+    
+    //goes to the park's website
+    func goToWebsite(_ view: MKAnnotationView) {
+        let annotation = view.annotation
+        
+        for park in parks {
+            if park.title == annotation?.title! {
+                let parkURL = NSURL(string: park.getLink())! as URL
+                UIApplication.shared.open(parkURL, options: [:], completionHandler: nil)
+            }
+        }
+    } //end goToWebsite
 }

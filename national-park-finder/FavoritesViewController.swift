@@ -9,28 +9,14 @@
 import UIKit
 
 class FavoritesViewController: TableViewController {
-    var favoritesList = Parks()
-    var favorites: [Park] {
-        get {
-            return self.favoritesList.parkList
-        }
-        set(val) {
-            self.favoritesList.parkList = val
-        }
-    }
- 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+        
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -39,15 +25,7 @@ class FavoritesViewController: TableViewController {
     
     
 //    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "ParkCell", for: indexPath)
-//        
-//        // Configure the cell...
-//        let park = parks[indexPath.row]
-//        cell.textLabel?.text = park.getParkName()
-//        cell.detailTextLabel?.text = "Distance"
-//        // Gives you greater than sign, last time you created a segue, this why is programmatically
-//        cell.accessoryType = .disclosureIndicator
-//        return cell
+//          return setUpCellObj("FavoritesCell", parks, indexPath, tableView)
 //    }
 //    
 //    // When it is pushed to navigation your landmark will now have a title, and information to fill in the sections we created in the LandmarkDetailGroupTableVC

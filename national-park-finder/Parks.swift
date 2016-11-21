@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+  * wrapper class for Park
+  */
 class Parks {
     var parkList : [Park] = []
 }

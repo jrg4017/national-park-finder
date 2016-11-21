@@ -9,8 +9,12 @@
 import UIKit
 import CoreLocation
 
+/**
+ * extension handles the needs for CLLocationManagerDelegate
+ * see MapViewController
+ */
 extension MapViewController: CLLocationManagerDelegate {
-    //updates current location
+    //updates current location, used by other controllers
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = manager.location!.coordinate
     }

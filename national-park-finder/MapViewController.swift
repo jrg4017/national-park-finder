@@ -10,15 +10,21 @@ import UIKit
 import MapKit
 import CoreLocation
 
+/**
+  * main controller for anything relating the app's mapview
+  * extensions: MkMapViewDelegate, CLLocationManagerDelegate, UIPickerDelegate
+  */
 class MapViewController: UIViewController {
     
+/**************** IBOutlet vars **************************/
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
-    
+
+/**************** UIPicker vars **************************/
     var mapTypePickerView: UIPickerView!
     let pickerDataSource = ["Standard", "Satellite", "Hybrid"]
     
-//    @IBOutlet weak var mapTypeSegmentCtrl: UISegmentedControl!
+/**************** park array wrapper/vars ****************/
     var parkList = Parks()
     var parks: [Park] {
         get {
@@ -28,10 +34,24 @@ class MapViewController: UIViewController {
             self.parkList.parkList = val
         }
     }
+/**************** CLLocation variables *******************/
     var locationManager: CLLocationManager = CLLocationManager()
     var currentLocation:CLLocationCoordinate2D = CLLocationCoordinate2D()
     
+/**************** IBAction functions **************************/
     
+    //zooms out to intial viewcenter of us when clicked
+    @IBAction func zoomViewOut(_ sender: UIButton) {
+        let lattitude = mapView.centerCoordinate.latitude
+        let longitude = mapView.centerCoordinate.longitude
+        
+        zoomRegion(lattitude, longitude, 60.0)
+    }
+    
+/**************** override functions **************************/
+    
+    //on view did load, load annotations & location data
+    // implement delegates for MKMapView, CLLocation, UIPickerView
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,16 +65,10 @@ class MapViewController: UIViewController {
         mapTypePickerView.dataSource = self
         mapTypePickerView.delegate = self
         
-        settingsButton.inputView = mapTypePickerView
+        //ßsettingsButton.inputView = mapTypePickerView
     }
     
-    //zooms out to intial viewcenter of us when clicked
-    @IBAction func zoomViewOut(_ sender: UIButton) {
-        let lattitude = mapView.centerCoordinate.latitude
-        let longitude = mapView.centerCoordinate.longitude
-        
-        zoomRegion(lattitude, longitude, 60.0)
-    }
+/**************** helper functions **************************/
     
     //function to zoom in or out on a location
     func zoomRegion(_ lattitude: CLLocationDegrees, _ longitude: CLLocationDegrees, _ delta: Double) {
@@ -86,7 +100,7 @@ class MapViewController: UIViewController {
         for park in parks {
             mapView.addAnnotation(park)
         }
-    }
+    }//end loadannotations
 }
 
 

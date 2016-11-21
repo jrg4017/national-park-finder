@@ -11,8 +11,7 @@ import CoreLocation
 import MapKit
 
 class Park: NSObject, MKAnnotation {
-    
-    /****** variables in data.plist *******/
+/**************** data.plist vars ****************************/
     private var parkName: String = ""
     private var parkLocation: String = ""
     private var dateFormed: String = ""
@@ -25,7 +24,7 @@ class Park: NSObject, MKAnnotation {
     private var parkDescription: String = ""
     private var location: CLLocation? //variable for CoreLocation
     
-    /****** variables for MKAnnotation *******/
+/**************** MKAnnotation vars **************************/
     @objc var coordinate: CLLocationCoordinate2D {
         get {
             return self.location!.coordinate
@@ -45,12 +44,12 @@ class Park: NSObject, MKAnnotation {
         }
     }
     
-    /****** description for CustomStringConvertible *******/
+/**************** description for CustomStringConvertible *******/
     override var description : String {
         return "{\n\tparkName: \(self.parkName)\n\tparkLocation: \(self.parkLocation)\n\tdateFormed: \(dateFormed)\n\tarea: \(self.area)\n\tlink: \(self.link)\n\tlocation: \(self.location!)\n\timageLink: \(self.imageLink)\n\tparkDescription: \(self.parkDescription) \n}"
     }
     
-    /****** initializers *******/
+/**************** initializer funcs ****************************/
     init(parkName: String, parkLocation: String, dateFormed: String, area: String, link: String, location: CLLocation?,imageLink: String, imageName: String, imageSize: String, imageType: String, parkDescription: String) {
         
         self.parkName = parkName
@@ -72,7 +71,7 @@ class Park: NSObject, MKAnnotation {
         self.init(parkName: "Unknown", parkLocation: "Unknown", dateFormed: "Unknown", area: "Unknown", link: "TBD", location: nil, imageLink: "TBD", imageName: "Unknown", imageSize: "Unknown", imageType: "Unknown",parkDescription: "TBD")
     }
     
-    /****** accessors and mutators *******/
+/**************** accessors & mutators **************************/
     func getParkName() -> String { return parkName }
     
     func setParkName(_ value: String) {
