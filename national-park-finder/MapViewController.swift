@@ -6,6 +6,14 @@
 //  Copyright © 2016 Julianna Gabler. All rights reserved.
 //
 
+// TODO LIST : 
+//              click on "Show on Map" and goes to MKAnnotation on MApVC 50,000 X 50,000
+//              convert MKAnnotation to MKMapItem (20,000 X 20,000 meters)
+//              edit button to delete options in favorites list
+//              rearrange favorites list (optional)
+//              load iamge (optional)
+//              reload view on Favorites view tab click
+
 import UIKit
 import MapKit
 import CoreLocation

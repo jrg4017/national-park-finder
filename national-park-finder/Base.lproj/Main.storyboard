@@ -100,6 +100,9 @@
                                 <segment title="Z-A"/>
                                 <segment title="Distance"/>
                             </segments>
+                            <connections>
+                                <action selector="sortParksArray:" destination="b9Z-T9-Ugk" eventType="valueChanged" id="NPw-x3-JR1"/>
+                            </connections>
                         </segmentedControl>
                     </navigationItem>
                 </tableViewController>

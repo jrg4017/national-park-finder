@@ -54,7 +54,7 @@ class TableViewController: UITableViewController {
         cell.textLabel?.text = park.getParkName()
                 
         if (identifier == "ParkCell") {
-            cell.detailTextLabel?.text = "Distance: \(self.getDistance(park.coordinate))"
+            cell.detailTextLabel?.text = "Distance: \(self.getDistance(park.coordinate)) miles"
         }
         
         cell.accessoryType = .disclosureIndicator
@@ -63,7 +63,7 @@ class TableViewController: UITableViewController {
     }
     
     //gets the distance in miles from the current location 
-    func getDistance(_ parkCoordinates: CLLocationCoordinate2D) -> String {
+    func getDistance(_ parkCoordinates: CLLocationCoordinate2D) -> Double {
         //convert to CLLocation from CLLocationCoordinate2Dß
         let currLocation = CLLocation(latitude: (mapViewController?.currentLocation.latitude)!, longitude: (mapViewController?.currentLocation.longitude)!)
         let parkLocation = CLLocation(latitude: parkCoordinates.latitude, longitude: parkCoordinates.longitude)
@@ -73,9 +73,9 @@ class TableViewController: UITableViewController {
         
         //round to nearest 10th
         let multiplier = pow(10.0, 2.0)
-        let rounded = round(distanceInMiles * multiplier) / multiplier
+        let roundedDistance = round(distanceInMiles * multiplier) / multiplier
         
-        return "\(rounded) miles"
+        return roundedDistance
     }
     
     //encodes the favorites array and updates accordingly
