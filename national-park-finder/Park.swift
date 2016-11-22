@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 import MapKit
 
-class Park: NSObject, MKAnnotation {
+class Park: NSObject, NSCoding, MKAnnotation {
 /**************** data.plist vars ****************************/
     private var parkName: String = ""
     private var parkLocation: String = ""
@@ -69,6 +69,41 @@ class Park: NSObject, MKAnnotation {
     
     override convenience init() {
         self.init(parkName: "Unknown", parkLocation: "Unknown", dateFormed: "Unknown", area: "Unknown", link: "TBD", location: nil, imageLink: "TBD", imageName: "Unknown", imageSize: "Unknown", imageType: "Unknown",parkDescription: "TBD")
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        self.parkName = aDecoder.decodeObject(forKey: "parkName") as! String
+        self.parkLocation = aDecoder.decodeObject(forKey: "parkLocation") as! String
+        self.dateFormed = aDecoder.decodeObject(forKey: "dateFormed") as! String
+        self.area = aDecoder.decodeObject(forKey: "area") as! String
+        self.link = aDecoder.decodeObject(forKey: "link") as! String
+        
+//        let lattitude = (aDecoder.decodeObject(forKey: "lattitude") as! NSString).doubleValue
+//        let longitude = (aDecoder.decodeObject(forKey: "lattitude") as! NSString).doubleValue
+//        self.location = CLLocation(latitude: lattitude, longitude: longitude)
+        
+        self.imageLink = aDecoder.decodeObject(forKey: "imageLink") as! String
+        self.imageName = aDecoder.decodeObject(forKey: "imageName") as! String
+        self.imageSize = aDecoder.decodeObject(forKey: "imageSize") as! String
+        self.imageType = aDecoder.decodeObject(forKey: "imageType") as! String
+        self.parkDescription = aDecoder.decodeObject(forKey: "description") as! String
+        
+        super.init()
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.parkName, forKey: "parkName")
+        aCoder.encode(self.parkLocation, forKey: "parkLocation")
+        aCoder.encode(self.dateFormed, forKey: "dateFormed")
+        aCoder.encode(self.area, forKey: "area")
+        aCoder.encode(self.link, forKey: "link")
+        aCoder.encode(self.location?.coordinate.latitude, forKey: "lattitude")
+        aCoder.encode(self.location?.coordinate.longitude, forKey: "longitude")
+        aCoder.encode(self.imageLink, forKey: "imageLink")
+        aCoder.encode(self.imageName, forKey: "imageName")
+        aCoder.encode(self.imageSize, forKey: "imageSize")
+        aCoder.encode(self.imageType, forKey: "imageType")
+        aCoder.encode(self.parkDescription, forKey: "description")
     }
     
 /**************** accessors & mutators **************************/

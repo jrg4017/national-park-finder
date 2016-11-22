@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ParkDetailTableViewController: UITableViewController {
+class ParkDetailTableViewController: TableViewController {
 /**************** constant values **************************/
     let NUM_OF_SECTIONS: Int = 6
     let NUM_OF_ROWS: Int = 1
@@ -16,6 +16,8 @@ class ParkDetailTableViewController: UITableViewController {
     let STANDARD_ROW_HEIGHT: CGFloat = 44.0
     let MAP_CELL_TITLE: String = "Show on Map"
     let FAVORITES_CELL_TITLE: String = "Add to Favorites"
+    let FAVORITES_ALERT_TITLE: String = "Favorites"
+    let FAVORITES_ALERT_MSG: String = "added to Favorites"
 /**************** variables ********************************/
     var park: Park!
     
@@ -24,6 +26,11 @@ class ParkDetailTableViewController: UITableViewController {
     //when view loads, implement variable section heights
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //just in case it hasn't been initalized
+        if favorites.count == 0 {
+            loadFavorites()
+        }
         
         //allows the section to have variable heights, to adapt to content
         super.tableView.rowHeight = UITableViewAutomaticDimension
@@ -49,30 +56,19 @@ class ParkDetailTableViewController: UITableViewController {
     
     //when tapping on specific sections, implement appropiate action
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var msg = ""
         switch indexPath.section {
             case 3:
                 goToURL(park)
-            case 4:
-                msg = "Show on Map"
+//            case 4:
+//                createAlert(title: "Maps", msg: "Go to map")
             case 5:
-                msg = "Add to favorites?"
+                createFavoritesAlert(park)
             default:
                 break
         }
         
-        // Pop up Alert
-        let alert = UIAlertController(title: "Tapped a Row", message: msg, preferredStyle: .alert)
-        
-        // handler nil, don't need to do anything when they tap ok button
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        
-        alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
-        
-        // Deselect the row that they were on
+        //deselect the row that was clicked
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
     
     //sets the content for each section
@@ -87,10 +83,8 @@ class ParkDetailTableViewController: UITableViewController {
             case 0:
                 setSection0Content(cell!, indexPath, park)
             case 1:
-                if let checkedUrl = URL(string: park.getLink()) {
-                    cell!.imageView?.contentMode = .scaleAspectFit
-                    setCellImageView(url: checkedUrl, cell: cell!)
-                }
+                let url = URL(string: park.getImageLink())
+                cell!.imageView?.downloadedFrom(url: url!)
             case 2:
                 cell!.textLabel?.text = "\(park.getParkDescription())"
             case 3:
@@ -132,26 +126,44 @@ class ParkDetailTableViewController: UITableViewController {
         cell.textLabel?.textAlignment = .center
     }
     
-    func setCellImageView(url: URL, cell: UITableViewCell) {
-        getImageDataFromURL(url: url) { (data, response, error)  in
-            guard let data = data, error == nil else { return }
-            
-            DispatchQueue.main.async() { () -> Void in
-                cell.imageView?.image = UIImage(data: data)
-            }
-        }
-        
-    }
-    
-    func getImageDataFromURL(url: URL, completion: @escaping(_ data: Data?, _ response: URLResponse, _ error: Error?) -> Void) {
-        URLSession.shared.dataTask(with: url) {
-            (data, response, error) in completion(data, response!, error)
-        }.resume()
-    }
-    
     //goes to URL if row is clicked
     func goToURL(_ park: Park) {
         let parkURL = NSURL(string: park.getLink())! as URL
         UIApplication.shared.open(parkURL, options: [:], completionHandler: nil)
+    }
+    
+    //creates an alert for the "Add to Favorites" Cell row and then adds it to the Favorites array
+    func createFavoritesAlert(_ park: Park) {
+        let msg = "\(park.getParkName()) \(FAVORITES_ALERT_MSG)"
+        let alert = UIAlertController(title: FAVORITES_ALERT_TITLE, message: msg, preferredStyle: .alert)
+        
+        // handler nil, don't need to do anything when they tap ok button
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: {action in self.addToFavorites(park)})
+        
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+}
+
+extension UIImageView {
+    func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+        contentMode = mode
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+                else { return }
+            DispatchQueue.main.async() { () -> Void in
+                self.image = image
+            }
+            print("success")
+        }.resume()
+    }
+    
+    func downloadedFrom(link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+        guard let url = URL(string: link) else { return }
+        downloadedFrom(url: url, contentMode: mode)
     }
 }

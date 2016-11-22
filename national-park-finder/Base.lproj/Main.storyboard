@@ -116,7 +116,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoritesCell" textLabel="hqE-PJ-Cla" detailTextLabel="Ovo-Pj-mA2" style="IBUITableViewCellStyleSubtitle" id="1ch-YQ-wsb">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoritesCell" textLabel="hqE-PJ-Cla" style="IBUITableViewCellStyleDefault" id="1ch-YQ-wsb">
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1ch-YQ-wsb" id="u12-Hg-PVk">
@@ -124,16 +124,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hqE-PJ-Cla">
-                                            <frame key="frameInset" minX="15" minY="4" width="34" height="21"/>
+                                            <frame key="frameInset" minX="15" width="345" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ovo-Pj-mA2">
-                                            <frame key="frameInset" minX="15" minY="25" width="33" height="15"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -146,16 +139,21 @@
                             <outlet property="delegate" destination="ek0-wF-08l" id="bHR-RB-21V"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="GL0-tS-dAp"/>
+                    <navigationItem key="navigationItem" title="Favorites" id="GL0-tS-dAp">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="M8D-WU-KcL"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="editButtonItem" destination="M8D-WU-KcL" id="mCq-Sd-RkX"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vO3-M9-q85" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1762" y="761"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Favorites-->
         <scene sceneID="558-dk-Y8G">
             <objects>
-                <navigationController id="xuR-Xz-UnI" sceneMemberID="viewController">
+                <navigationController title="Favorites" id="xuR-Xz-UnI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="Qno-vl-iFT"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cqn-MM-Wfo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -194,16 +192,39 @@
                         <viewControllerLayoutGuide type="top" id="ITw-mG-ArO"/>
                         <viewControllerLayoutGuide type="bottom" id="qc2-Pu-QOh"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="a0b-g8-6aV">
+                    <view key="view" alpha="0.84999999999999998" contentMode="scaleToFill" id="a0b-g8-6aV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="By Julianna Gabler" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Xu-sW-Z6k">
+                                <frame key="frameInset" minX="23" minY="520" width="329" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Class project for Mobile Development I Version 4.0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GxP-1t-Txa">
+                                <frame key="frameInset" minX="37" minY="530" width="300" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="National Park Finder" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cg3-J5-3it">
+                                <frame key="frameInset" minX="30" minY="28" width="314" height="181"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="57"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.16435114440000001" green="0.65930361680000005" blue="0.2816786007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="About" id="cu8-Yb-raw"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nSz-60-AQ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1" y="762"/>
+            <point key="canvasLocation" x="-2.3999999999999999" y="761.46926536731644"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">

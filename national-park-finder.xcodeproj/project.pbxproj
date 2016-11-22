@@ -23,7 +23,6 @@
 		F6481DE01DDD36F800018638 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6481DDF1DDD36F800018638 /* MapKit.framework */; };
 		F6481DEA1DDD617D00018638 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6481DE91DDD617D00018638 /* data.plist */; };
 		F6481DEE1DDE1AA100018638 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481DED1DDE1AA100018638 /* TableViewController.swift */; };
-		F6481DF01DDE1C3200018638 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481DEF1DDE1C3200018638 /* AboutViewController.swift */; };
 		F6481DF21DDE222B00018638 /* UIPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481DF11DDE222B00018638 /* UIPickerDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +45,6 @@
 		F6481DDF1DDD36F800018638 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F6481DE91DDD617D00018638 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		F6481DED1DDE1AA100018638 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		F6481DEF1DDE1C3200018638 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		F6481DF11DDE222B00018638 /* UIPickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPickerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,7 +96,6 @@
 			children = (
 				F6481DD21DDD35BD00018638 /* MapView */,
 				F6481DEB1DDD6D9C00018638 /* TableControllers */,
-				F6481DEF1DDE1C3200018638 /* AboutViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -248,7 +245,6 @@
 				F6481DB31DDD342100018638 /* AppDelegate.swift in Sources */,
 				F6481DF21DDE222B00018638 /* UIPickerDelegate.swift in Sources */,
 				F6481DD41DDD35F700018638 /* MkMapViewDelegate.swift in Sources */,
-				F6481DF01DDE1C3200018638 /* AboutViewController.swift in Sources */,
 				F6481DEE1DDE1AA100018638 /* TableViewController.swift in Sources */,
 				F6481DD81DDD36A100018638 /* Park.swift in Sources */,
 				F6481DCA1DDD34E000018638 /* ParkTableViewController.swift in Sources */,

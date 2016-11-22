@@ -24,10 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController = window?.rootViewController as? UITabBarController
         
         let mapViewController = tabBarController!.viewControllers![0] as! MapViewController
+        
         let navigationViewController = tabBarController!.viewControllers![1] as! UINavigationController
         let parkTableViewController = navigationViewController.viewControllers[0] as! ParkTableViewController
-        //let nav2ViewController = tabBarController!.viewControllers![2] as! UINavigationController
-        //let favoritesViewController = nav2ViewController.viewControllers[0] as! FavoritesViewController
+        
+        let nav2ViewController = tabBarController!.viewControllers![2] as! UINavigationController
+        let favoritesViewController = nav2ViewController.viewControllers[0] as! FavoritesViewController
         //let aboutViewController = tabBarController!.viewControllers![3] as! AboutViewController
         
         
@@ -37,10 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //set parks list
         mapViewController.parkList = parkList
         parkTableViewController.parkList = parkList
+        favoritesViewController.parkList = parkList
         
         parkTableViewController.mapViewController = mapViewController
-        //favoritesViewController.parkList = parkList
-        
+
         return true
     }
     
