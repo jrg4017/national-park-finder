@@ -6,10 +6,7 @@
 //  Copyright © 2016 Julianna Gabler. All rights reserved.
 //
 
-// TODO LIST : 
-//              click on "Show on Map" and goes to MKAnnotation on MApVC 50,000 X 50,000
-//              convert MKAnnotation to MKMapItem (20,000 X 20,000 meters)
-//              edit button to delete options in favorites list
+// TODO LIST :
 //              rearrange favorites list (optional)
 //              CENTER iamge (optional)
 //              reload view on Favorites view tab click
@@ -99,6 +96,15 @@ class MapViewController: UIViewController {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+    }
+    
+    func showOnMap(_ park: Park) {
+        tabBarController?.selectedIndex = 0
+        
+        let lattitude = park.coordinate.latitude
+        let longitude = park.coordinate.longitude
+        
+        zoomRegion(lattitude, longitude, 0.75)
     }
     
     //loads the data in from data.plist and add as mkAnnotations

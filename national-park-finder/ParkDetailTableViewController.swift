@@ -59,8 +59,9 @@ class ParkDetailTableViewController: TableViewController {
         switch indexPath.section {
             case 3:
                 goToURL(park)
-//            case 4:
-//                createAlert(title: "Maps", msg: "Go to map")
+            case 4:
+                let mapVC = tabBarController?.viewControllers?[0] as! MapViewController
+                mapVC.showOnMap(park)
             case 5:
                 createFavoritesAlert(park)
             default:
@@ -83,8 +84,8 @@ class ParkDetailTableViewController: TableViewController {
             case 0:
                 setSection0Content(cell!, indexPath, park)
             case 1:
-                let url = URL(string: park.getImageLink())
-                //cell!.imageView?.downloadedFrom(url: url!)
+                fetchImageFromURL(urlString: park.getImageLink(), cell: cell!)
+                cell!.imageView?.contentMode = .scaleToFill
             case 2:
                 cell!.textLabel?.text = "\(park.getParkDescription())"
             case 3:
@@ -137,33 +138,20 @@ class ParkDetailTableViewController: TableViewController {
         let msg = "\(park.getParkName()) \(FAVORITES_ALERT_MSG)"
         let alert = UIAlertController(title: FAVORITES_ALERT_TITLE, message: msg, preferredStyle: .alert)
         
-        // handler nil, don't need to do anything when they tap ok button
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: {action in self.addToFavorites(park)})
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: { action in self.addToFavorites(park) })
         
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
+    
+    func fetchImageFromURL(urlString: String, cell: UITableViewCell) {
+        
+        let imageUrl = URL(string: urlString)
+
+        if let imageData = NSData(contentsOf: imageUrl!), let image = UIImage(data: imageData as Data) {
+            cell.imageView?.image = image
+        }
+    }
+
 }
 
-//extension UIImageView {
-//    func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
-//        contentMode = mode
-//        URLSession.shared.dataTask(with: url) { (data, response, error) in
-//            guard
-//                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-//                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-//                let data = data, error == nil,
-//                let image = UIImage(data: data)
-//                else { return }
-//            DispatchQueue.main.async() { () -> Void in
-//                self.image = image
-//            }
-//            print("success")
-//        }.resume()
-//    }
-//    
-//    func downloadedFrom(link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
-//        guard let url = URL(string: link) else { return }
-//        downloadedFrom(url: url, contentMode: mode)
-//    }
-//}

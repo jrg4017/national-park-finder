@@ -42,10 +42,10 @@ class TableViewController: UITableViewController {
     }
 /**************** helper functions **************************/
     //set ups the cell for the appropiate
-    func setUpCellObj(_ identifier: String, _ parkList: [Park], _ indexPath: IndexPath, _ tableView: UITableView) -> UITableViewCell {
+    func setUpCellObj(_ identifier: String, _ parkArr: [Park], _ indexPath: IndexPath, _ tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         
-        let park = parkList[indexPath.row]
+        let park = parkArr[indexPath.row]
         cell.textLabel?.text = park.getParkName()
                 
         if (identifier == "ParkCell") {
@@ -85,8 +85,10 @@ class TableViewController: UITableViewController {
     }
     
     func addToFavorites(_ park: Park) {
-        favorites.append(park.getParkName())
-        updateFavoriteDefaults()
+        if !(favorites.contains(park.getParkName())) {
+            favorites.append(park.getParkName())
+            updateFavoriteDefaults()
+        }
     }
 
     func removeFromFavorites(_ park: Park) {

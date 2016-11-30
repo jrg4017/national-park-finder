@@ -142,11 +142,9 @@
                             <outlet property="delegate" destination="ek0-wF-08l" id="bHR-RB-21V"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Favorites" id="GL0-tS-dAp">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="M8D-WU-KcL"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Favorites" id="GL0-tS-dAp"/>
                     <connections>
-                        <outlet property="editButtonItem" destination="M8D-WU-KcL" id="mCq-Sd-RkX"/>
+                        <outlet property="favoriteTableView" destination="Hf5-qB-gXA" id="ex0-lj-ENL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vO3-M9-q85" userLabel="First Responder" sceneMemberID="firstResponder"/>
