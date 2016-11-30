@@ -18,7 +18,7 @@ class FavoritesViewController: TableViewController {
         //self.clearsSelectionOnViewWillAppear = true
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         //self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,13 +31,29 @@ class FavoritesViewController: TableViewController {
 
     // When it is pushed to navigation your favorties will now have a title, and information to fill in the sections we created in the LandmarkDetailGroupTableVC
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         // Get a park
-        let favorite = favorites[indexPath.row]
+        let favorite = getFavoritePark(indexPath)
         let detailVC = ParkDetailTableViewController(style: .grouped)
         detailVC.title = favorite.title
         detailVC.park = favorite
         
         navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
+    func getFavoritePark(_ indexPath: IndexPath) -> Park {
+        
+        let parkName = self.favorites[indexPath.row]
+        var favoritePark = Park()
+        
+        for park in parks {
+            if park.getParkName() == parkName {
+                favoritePark = park
+                print("PARK OBJ: \(park.getParkName()) &&&& FAV OBJ: \(parkName)")
+            }
+        }
+        
+        return favoritePark
     }
 
 //    override func viewWillAppear(_ animated: Bool) {

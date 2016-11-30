@@ -84,7 +84,7 @@ class ParkDetailTableViewController: TableViewController {
                 setSection0Content(cell!, indexPath, park)
             case 1:
                 let url = URL(string: park.getImageLink())
-                cell!.imageView?.downloadedFrom(url: url!)
+                //cell!.imageView?.downloadedFrom(url: url!)
             case 2:
                 cell!.textLabel?.text = "\(park.getParkDescription())"
             case 3:
@@ -145,25 +145,25 @@ class ParkDetailTableViewController: TableViewController {
     }
 }
 
-extension UIImageView {
-    func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
-        contentMode = mode
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-                else { return }
-            DispatchQueue.main.async() { () -> Void in
-                self.image = image
-            }
-            print("success")
-        }.resume()
-    }
-    
-    func downloadedFrom(link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
-        guard let url = URL(string: link) else { return }
-        downloadedFrom(url: url, contentMode: mode)
-    }
-}
+//extension UIImageView {
+//    func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+//        contentMode = mode
+//        URLSession.shared.dataTask(with: url) { (data, response, error) in
+//            guard
+//                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+//                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+//                let data = data, error == nil,
+//                let image = UIImage(data: data)
+//                else { return }
+//            DispatchQueue.main.async() { () -> Void in
+//                self.image = image
+//            }
+//            print("success")
+//        }.resume()
+//    }
+//    
+//    func downloadedFrom(link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+//        guard let url = URL(string: link) else { return }
+//        downloadedFrom(url: url, contentMode: mode)
+//    }
+//}

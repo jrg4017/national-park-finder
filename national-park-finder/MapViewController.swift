@@ -11,7 +11,7 @@
 //              convert MKAnnotation to MKMapItem (20,000 X 20,000 meters)
 //              edit button to delete options in favorites list
 //              rearrange favorites list (optional)
-//              load iamge (optional)
+//              CENTER iamge (optional)
 //              reload view on Favorites view tab click
 
 import UIKit

@@ -25,9 +25,7 @@ class TableViewController: UITableViewController {
         }
     }
     
-    var favoritesList = Parks()
-    var favorites: [Park]  = []
-    var mapViewController: MapViewController?
+    var favorites: [String]  = []
     
 /**************** override functions **************************/    
     override func didReceiveMemoryWarning() {
@@ -37,12 +35,9 @@ class TableViewController: UITableViewController {
     func loadFavorites() {
         //read array of Favorites from UserDefaults in
         let favoritesData = UserDefaults.standard.object(forKey: "favorites") as? Data
-
-        
-//        let placesData = NSUserDefaults.standardUserDefaults().objectForKey("places") as? NSData
         
         if let favoritesData = favoritesData {
-            favorites = (NSKeyedUnarchiver.unarchiveObject(with: favoritesData) as? [Park])!
+            favorites = (NSKeyedUnarchiver.unarchiveObject(with: favoritesData) as? [String])!
         }
     }
 /**************** helper functions **************************/
@@ -64,8 +59,10 @@ class TableViewController: UITableViewController {
     
     //gets the distance in miles from the current location 
     func getDistance(_ parkCoordinates: CLLocationCoordinate2D) -> Double {
+        let mapVC = tabBarController?.viewControllers?[0] as! MapViewController
+        
         //convert to CLLocation from CLLocationCoordinate2Dß
-        let currLocation = CLLocation(latitude: (mapViewController?.currentLocation.latitude)!, longitude: (mapViewController?.currentLocation.longitude)!)
+        let currLocation = CLLocation(latitude: mapVC.currentLocation.latitude, longitude: mapVC.currentLocation.longitude)
         let parkLocation = CLLocation(latitude: parkCoordinates.latitude, longitude: parkCoordinates.longitude)
         
         //calculate distance in miles (returns in meters)ß
@@ -88,12 +85,12 @@ class TableViewController: UITableViewController {
     }
     
     func addToFavorites(_ park: Park) {
-        favorites.append(park)
+        favorites.append(park.getParkName())
         updateFavoriteDefaults()
     }
 
     func removeFromFavorites(_ park: Park) {
-        if let index = favorites.index(of: park) {
+        if let index = favorites.index(of: park.getParkName()) {
             favorites.remove(at: index)
         }
         

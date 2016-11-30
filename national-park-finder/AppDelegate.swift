@@ -40,8 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mapViewController.parkList = parkList
         parkTableViewController.parkList = parkList
         favoritesViewController.parkList = parkList
-        
-        parkTableViewController.mapViewController = mapViewController
 
         return true
     }
