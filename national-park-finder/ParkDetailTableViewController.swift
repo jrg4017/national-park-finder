@@ -8,8 +8,14 @@
 
 import UIKit
 
+/**
+  * Implements a UITableView containing park details
+  * see: TableViewController for shared functions
+  */
 class ParkDetailTableViewController: TableViewController {
-/**************** constant values **************************/
+    
+// MARK: - constant variables
+    
     let NUM_OF_SECTIONS: Int = 6
     let NUM_OF_ROWS: Int = 1
     let NUM_OF_SECTION_0_ROWS: Int = 4
@@ -18,10 +24,12 @@ class ParkDetailTableViewController: TableViewController {
     let FAVORITES_CELL_TITLE: String = "Add to Favorites"
     let FAVORITES_ALERT_TITLE: String = "Favorites"
     let FAVORITES_ALERT_MSG: String = "added to Favorites"
-/**************** variables ********************************/
-    var park: Park!
     
-/**************** override funcs **************************/
+// MARK: - variables
+    
+    var park: Park!
+
+// MARK: - Lifecycle
     
     //when view loads, implement variable section heights
     override func viewDidLoad() {
@@ -39,6 +47,8 @@ class ParkDetailTableViewController: TableViewController {
         super.tableView.estimatedRowHeight = STANDARD_ROW_HEIGHT
         
     }
+    
+// MARK: - UITableViewDelegate functions
     
     //we have exactly 6 sections of information
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -107,7 +117,9 @@ class ParkDetailTableViewController: TableViewController {
         return cell!
     }
 
-/**************** helper functions **************************/
+// MARK: - helper functions
+    
+// MARK: detail view controller section 0
     
     //sets the appropiate content for each row within the first section
     func setSection0Content(_ cell: UITableViewCell, _ indexPath: IndexPath, _ park: Park) {
@@ -126,12 +138,25 @@ class ParkDetailTableViewController: TableViewController {
         
         cell.textLabel?.textAlignment = .center
     }
+
+// MARK: url functions
     
-    //goes to URL if row is clicked
+    //goes to park URL if row is clicked
     func goToURL(_ park: Park) {
         let parkURL = NSURL(string: park.getLink())! as URL
         UIApplication.shared.open(parkURL, options: [:], completionHandler: nil)
     }
+    
+    //fetches an image from the link url
+    func fetchImageFromURL(urlString: String, cell: UITableViewCell) {
+        let imageUrl = URL(string: urlString)
+        
+        if let imageData = NSData(contentsOf: imageUrl!), let image = UIImage(data: imageData as Data) {
+            cell.imageView?.image = image
+        }
+    }
+
+// MARK: alert creation
     
     //creates an alert for the "Add to Favorites" Cell row and then adds it to the Favorites array
     func createFavoritesAlert(_ park: Park) {
@@ -142,16 +167,6 @@ class ParkDetailTableViewController: TableViewController {
         
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
-    }
-    
-    func fetchImageFromURL(urlString: String, cell: UITableViewCell) {
-        
-        let imageUrl = URL(string: urlString)
-
-        if let imageData = NSData(contentsOf: imageUrl!), let image = UIImage(data: imageData as Data) {
-            cell.imageView?.image = image
-        }
-    }
-
+    }//end createFavoritesAlert
 }
 

@@ -23,7 +23,7 @@
 		F6481DE01DDD36F800018638 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6481DDF1DDD36F800018638 /* MapKit.framework */; };
 		F6481DEA1DDD617D00018638 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6481DE91DDD617D00018638 /* data.plist */; };
 		F6481DEE1DDE1AA100018638 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481DED1DDE1AA100018638 /* TableViewController.swift */; };
-		F6481DF21DDE222B00018638 /* UIPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6481DF11DDE222B00018638 /* UIPickerDelegate.swift */; };
+		F6BA38CC1DEFAFC20033473B /* about-wallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6BA38CB1DEFAFC20033473B /* about-wallpaper.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +45,7 @@
 		F6481DDF1DDD36F800018638 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F6481DE91DDD617D00018638 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		F6481DED1DDE1AA100018638 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		F6481DF11DDE222B00018638 /* UIPickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPickerDelegate.swift; sourceTree = "<group>"; };
+		F6BA38CB1DEFAFC20033473B /* about-wallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "about-wallpaper.jpg"; path = "icons/about-wallpaper.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +106,6 @@
 				F6481DC71DDD349A00018638 /* MapViewController.swift */,
 				F6481DD31DDD35F700018638 /* MkMapViewDelegate.swift */,
 				F6481DD51DDD367600018638 /* CLLocationManagerDelegate.swift */,
-				F6481DF11DDE222B00018638 /* UIPickerDelegate.swift */,
 			);
 			name = MapView;
 			sourceTree = "<group>";
@@ -132,6 +131,7 @@
 		F6481DE11DDD3E6400018638 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				F6BA38CB1DEFAFC20033473B /* about-wallpaper.jpg */,
 				F6481DBB1DDD342100018638 /* Assets.xcassets */,
 			);
 			name = Assets;
@@ -225,6 +225,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6BA38CC1DEFAFC20033473B /* about-wallpaper.jpg in Resources */,
 				F6481DBF1DDD342100018638 /* LaunchScreen.storyboard in Resources */,
 				F6481DBC1DDD342100018638 /* Assets.xcassets in Resources */,
 				F6481DEA1DDD617D00018638 /* data.plist in Resources */,
@@ -243,7 +244,6 @@
 				F6481DCD1DDD352200018638 /* ParkDetailTableViewController.swift in Sources */,
 				F6481DCF1DDD357300018638 /* FavoritesViewController.swift in Sources */,
 				F6481DB31DDD342100018638 /* AppDelegate.swift in Sources */,
-				F6481DF21DDE222B00018638 /* UIPickerDelegate.swift in Sources */,
 				F6481DD41DDD35F700018638 /* MkMapViewDelegate.swift in Sources */,
 				F6481DEE1DDE1AA100018638 /* TableViewController.swift in Sources */,
 				F6481DD81DDD36A100018638 /* Park.swift in Sources */,

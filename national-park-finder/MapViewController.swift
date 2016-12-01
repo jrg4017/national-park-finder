@@ -6,11 +6,6 @@
 //  Copyright © 2016 Julianna Gabler. All rights reserved.
 //
 
-// TODO LIST :
-//              rearrange favorites list (optional)
-//              CENTER iamge (optional)
-//              reload view on Favorites view tab click
-
 import UIKit
 import MapKit
 import CoreLocation
@@ -20,16 +15,18 @@ import CoreLocation
   * extensions: MkMapViewDelegate, CLLocationManagerDelegate, UIPickerDelegate
   */
 class MapViewController: UIViewController {
+// MARK: - constants
     
-/**************** IBOutlet vars **************************/
-    @IBOutlet weak var settingsButton: UIButton!
+    let ZOOMED_OUT_DELTA : Double = 60.0
+    let ZOOMED_IN_DELTA : Double = 0.75
+    let MAP_VIEW_INDEX: Int = 0
+    
+// MARK: - variables
+    
+    /***** IBOutlet variables ******/
     @IBOutlet weak var mapView: MKMapView!
-
-/**************** UIPicker vars **************************/
-    var mapTypePickerView: UIPickerView!
-    let pickerDataSource = ["Standard", "Satellite", "Hybrid"]
     
-/**************** park array wrapper/vars ****************/
+    /****** park wrapper and variables ******/
     var parkList = Parks()
     var parks: [Park] {
         get {
@@ -39,23 +36,23 @@ class MapViewController: UIViewController {
             self.parkList.parkList = val
         }
     }
-/**************** CLLocation variables *******************/
+    /****** CLLocation variables ******/
     var locationManager: CLLocationManager = CLLocationManager()
     var currentLocation:CLLocationCoordinate2D = CLLocationCoordinate2D()
     
-/**************** IBAction functions **************************/
+// MARK: - Actions
     
-    //zooms out to intial viewcenter of us when clicked
+    //zooms out to initial view
     @IBAction func zoomViewOut(_ sender: UIButton) {
         let lattitude = mapView.centerCoordinate.latitude
         let longitude = mapView.centerCoordinate.longitude
         
-        zoomRegion(lattitude, longitude, 60.0)
+        zoomRegion(lattitude, longitude, ZOOMED_OUT_DELTA)
     }
     
-/**************** override functions **************************/
+// MARK: - Lifecycle
     
-    //on view did load, load annotations & location data
+    // on view did load, load annotations & location data
     // implement delegates for MKMapView, CLLocation, UIPickerView
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,16 +61,11 @@ class MapViewController: UIViewController {
         loadAnnotations()
         mapView.delegate = self
         mapView.showsUserLocation = true
-        
-        //let inputView = UIView(frame: CGRect(0, 0, self.view.frame.width, 240))
-        mapTypePickerView = UIPickerView()
-        mapTypePickerView.dataSource = self
-        mapTypePickerView.delegate = self
-        
-        //ßsettingsButton.inputView = mapTypePickerView
     }
     
-/**************** helper functions **************************/
+// MARK: - helper functions
+    
+// MARK: zoom on MKMapView annotation
     
     //function to zoom in or out on a location
     func zoomRegion(_ lattitude: CLLocationDegrees, _ longitude: CLLocationDegrees, _ delta: Double) {
@@ -82,7 +74,18 @@ class MapViewController: UIViewController {
         
         mapView.setRegion(region, animated: true)
     }
-    
+
+    //switches to map view and shows the annotation in question
+    func showOnMap(_ park: Park) {
+        tabBarController?.selectedIndex = MAP_VIEW_INDEX
+        
+        let lattitude = park.coordinate.latitude
+        let longitude = park.coordinate.longitude
+        
+        zoomRegion(lattitude, longitude, ZOOMED_IN_DELTA)
+    }
+
+// MARK: Loading Data
     //asks for location and sets up the need for location to update
     func loadLocation() {
         // Ask for Authorisation from the User.
@@ -96,15 +99,6 @@ class MapViewController: UIViewController {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-    }
-    
-    func showOnMap(_ park: Park) {
-        tabBarController?.selectedIndex = 0
-        
-        let lattitude = park.coordinate.latitude
-        let longitude = park.coordinate.longitude
-        
-        zoomRegion(lattitude, longitude, 0.75)
     }
     
     //loads the data in from data.plist and add as mkAnnotations

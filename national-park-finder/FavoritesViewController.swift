@@ -8,16 +8,17 @@
 
 import UIKit
 
+/**
+  * creates a UITableView for all of the users' favorite parks
+  * see: TableViewController for shared functions
+  */
 class FavoritesViewController: TableViewController {
 
-    @IBOutlet var favoriteTableView: UITableView!
+// MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loadFavorites()
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
@@ -25,23 +26,26 @@ class FavoritesViewController: TableViewController {
         loadFavorites()
         self.tableView.reloadData()
     }
+
+// MARK: - UITableViewDelegate functions
     
+    //number of rows to display, equal to total favorited
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favorites.count
     }
     
+    //sets up a UITableViewCell for each favorited park
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let favoritesObjectArray = fetchParkArray()
         
         return setUpCellObj("FavoritesCell", favoritesObjectArray, indexPath, tableView)
     }
 
-    
-    // When it is pushed to navigation your favorties will now have a title, and information to fill in the sections we created in the LandmarkDetailGroupTableVC
+    // pushes a park detail to the nav controller
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        // Get a park
+        //gets park object from favorites ([String])
         let favorite = fetchParkObject(favorites[indexPath.row])
+        
         let detailVC = ParkDetailTableViewController(style: .grouped)
         detailVC.title = favorite.title
         detailVC.park = favorite
@@ -49,6 +53,29 @@ class FavoritesViewController: TableViewController {
         navigationController?.pushViewController(detailVC, animated: true)
     }
     
+    // allows deleting to occur when edit is pressed
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    //number of sections available
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    //deletes the UITableViewCell  from the UITableView and favorites array
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let p = fetchParkObject(favorites[indexPath.row])
+            removeFromFavorites(p)
+            
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+// MARK: - transforms favorites strings to Park
+    
+    //gets the park object for a single park name
     func fetchParkObject(_ parkName: String) -> Park {
         var p = Park()
         
@@ -61,6 +88,7 @@ class FavoritesViewController: TableViewController {
         return p
     }
     
+    //gets all of the Park object in the favorites array
     func fetchParkArray() -> [Park] {
         var fav: [Park] = []
         
@@ -70,46 +98,6 @@ class FavoritesViewController: TableViewController {
         }
         
         return fav
-    }
-    
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let p = fetchParkObject(favorites[indexPath.row])
-            removeFromFavorites(p)
-            
-            self.tableView.deleteRows(at: [indexPath], with: .fade)
-        } 
-    }
-    
-//    func insertRow(_ park: Park) {
-//        
-////        tabBarController?.selectedIndex = 2
-////        
-////        let indexPath = IndexPath(row: (favorites.count), section: 1)
-////    
-////        //self.tableView.beginUpdates()
-////        self.addToFavorites(park)
-////        self.tableView.insertRows(at: [indexPath], with: .bottom)
-////        //self.tableView.endUpdates()
-//        
-//        self.tableView.beginUpdates()
-//        
-//        let insertedIndexPathRange = 0..<favorites.count + 1 // total count 4
-//        
-////        self.addToFavorites(park)
-//        
-//        let insertedIndexPaths = insertedIndexPathRange.map { IndexPath(row: $0, section: 0) }
-//        
-//        self.tableView.insertRows(at: insertedIndexPaths, with: .fade)
-//        self.tableView.endUpdates()
-//    }
-    
+    }//end fetchParkObject
 }
 

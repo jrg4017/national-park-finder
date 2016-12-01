@@ -14,7 +14,10 @@ import CoreLocation
   * implements shared functions and variables
   */
 class TableViewController: UITableViewController {
-/**************** park array wrapper/vars ****************/
+
+// MARK: - variables
+
+    /****** park wrapper & variable ******/
     var parkList = Parks()
     var parks: [Park] {
         get {
@@ -27,11 +30,14 @@ class TableViewController: UITableViewController {
     
     var favorites: [String]  = []
     
-/**************** override functions **************************/    
+// MARK: - Lifecycle functions
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
+// MARK: - favorites array functions
+    
     func loadFavorites() {
         //read array of Favorites from UserDefaults in
         let favoritesData = UserDefaults.standard.object(forKey: "favorites") as? Data
@@ -40,7 +46,11 @@ class TableViewController: UITableViewController {
             favorites = (NSKeyedUnarchiver.unarchiveObject(with: favoritesData) as? [String])!
         }
     }
-/**************** helper functions **************************/
+    
+// MARK: - helper functions
+    
+// MARK: UITableViewCell setup
+    
     //set ups the cell for the appropiate
     func setUpCellObj(_ identifier: String, _ parkArr: [Park], _ indexPath: IndexPath, _ tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
@@ -56,6 +66,8 @@ class TableViewController: UITableViewController {
         
         return cell
     }
+
+// MARK: measures distance
     
     //gets the distance in miles from the current location 
     func getDistance(_ parkCoordinates: CLLocationCoordinate2D) -> Double {
@@ -74,6 +86,8 @@ class TableViewController: UITableViewController {
         
         return roundedDistance
     }
+    
+// MARK: edit favorites array
     
     //encodes the favorites array and updates accordingly
     func updateFavoriteDefaults() {
@@ -97,5 +111,5 @@ class TableViewController: UITableViewController {
         }
         
         updateFavoriteDefaults()
-    }
+    }//end removeFromFavorites
 }

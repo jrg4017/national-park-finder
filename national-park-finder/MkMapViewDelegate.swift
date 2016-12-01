@@ -16,7 +16,8 @@ import AddressBook
   */
 extension MapViewController: MKMapViewDelegate {
     
-/**************** Delegate functions **************************/
+// MARK: - MKMapViewDelegate functions
+    
     //button right and left clicks
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if (control == view.rightCalloutAccessoryView) {
@@ -33,7 +34,7 @@ extension MapViewController: MKMapViewDelegate {
         let lattitude = annotation?.coordinate.latitude
         let longitude = annotation?.coordinate.longitude
         
-        zoomRegion(lattitude!, longitude!, 0.75)
+        zoomRegion(lattitude!, longitude!, ZOOMED_IN_DELTA)
         
     }
     
@@ -63,7 +64,10 @@ extension MapViewController: MKMapViewDelegate {
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -5, y: -5)
                 let leftButton = UIButton(type: .infoLight)
+                
                 let rightButton = UIButton(type: .detailDisclosure)
+                rightButton.setImage(UIImage(named: "navigate.png"), for: .normal)
+                
                 leftButton.tag = 0
                 rightButton.tag = 1
                 view.leftCalloutAccessoryView = leftButton
@@ -74,8 +78,7 @@ extension MapViewController: MKMapViewDelegate {
         return nil
     }
     
-/**************** helper functions **************************/
-    
+// MARK: - helper functions for MKMapViewDelegate
     //gets directions by going maps navigation
     func getDirections(_ view: MKAnnotationView) {
         let destination = view.annotation

@@ -14,6 +14,9 @@ import CoreLocation
  * see MapViewController
  */
 extension MapViewController: CLLocationManagerDelegate {
+    
+// MARK: - CLLocationManagerDelegate functions
+    
     //updates current location, used by other controllers
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = manager.location!.coordinate

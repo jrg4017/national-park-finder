@@ -8,9 +8,19 @@
 
 import UIKit
 
+/**
+  * creates a UITableView for all national parks
+  * see: TableViewController for shared fucntions
+  */
 class ParkTableViewController: TableViewController {
-    var sortedParks: [Park] = []
+
+// MARK: - variables
     
+    var sortedParks: [Park] = []
+
+// MARK: - Action
+    
+    //sorts array A-Z, Z-A, distance
     @IBAction func sortParksArray(_ sender: UISegmentedControl) {
         switch(sender.selectedSegmentIndex) {
             case 0:
@@ -24,11 +34,15 @@ class ParkTableViewController: TableViewController {
         }
         super.tableView.reloadData()
     }
-/**************** override functions *******************/
+
+// MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         sortedParks = self.parks
     }
+
+// MARK: - UITableViewDelegate functions
     
     //return the number of cells to display total
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,7 +62,7 @@ class ParkTableViewController: TableViewController {
         detailVC.title = park.title
         detailVC.park = park
         navigationController?.pushViewController(detailVC, animated: true)
-    }
+    }//end tableView
 }
 
 

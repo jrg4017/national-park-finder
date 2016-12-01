@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 
 class Park: NSObject, NSCoding, MKAnnotation {
-/**************** data.plist vars ****************************/
+// MARK: - data.plist variables
     private var parkName: String = ""
     private var parkLocation: String = ""
     private var dateFormed: String = ""
@@ -24,7 +24,7 @@ class Park: NSObject, NSCoding, MKAnnotation {
     private var parkDescription: String = ""
     private var location: CLLocation? //variable for CoreLocation
     
-/**************** MKAnnotation vars **************************/
+// MARK: - MKAnnotation variables
     @objc var coordinate: CLLocationCoordinate2D {
         get {
             return self.location!.coordinate
@@ -44,12 +44,12 @@ class Park: NSObject, NSCoding, MKAnnotation {
         }
     }
     
-/**************** description for CustomStringConvertible *******/
+// MARK: - description variable
     override var description : String {
         return "{\n\tparkName: \(self.parkName)\n\tparkLocation: \(self.parkLocation)\n\tdateFormed: \(dateFormed)\n\tarea: \(self.area)\n\tlink: \(self.link)\n\tlocation: \(self.location!)\n\timageLink: \(self.imageLink)\n\tparkDescription: \(self.parkDescription) \n}"
     }
     
-/**************** initializer funcs ****************************/
+// MARK: - Initalizers
     init(parkName: String, parkLocation: String, dateFormed: String, area: String, link: String, location: CLLocation?,imageLink: String, imageName: String, imageSize: String, imageType: String, parkDescription: String) {
         
         self.parkName = parkName
@@ -71,6 +71,7 @@ class Park: NSObject, NSCoding, MKAnnotation {
         self.init(parkName: "Unknown", parkLocation: "Unknown", dateFormed: "Unknown", area: "Unknown", link: "TBD", location: nil, imageLink: "TBD", imageName: "Unknown", imageSize: "Unknown", imageType: "Unknown",parkDescription: "TBD")
     }
     
+// MARK: NSCoding intializers
     required init(coder aDecoder: NSCoder) {
         self.parkName = aDecoder.decodeObject(forKey: "parkName") as! String
         
@@ -81,7 +82,7 @@ class Park: NSObject, NSCoding, MKAnnotation {
         aCoder.encode(self.parkName, forKey: "parkName")
     }
     
-/**************** accessors & mutators **************************/
+// MARK: - Accessors & Mutators
     func getParkName() -> String { return parkName }
     
     func setParkName(_ value: String) {
